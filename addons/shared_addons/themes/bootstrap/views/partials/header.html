@@ -1,0 +1,293 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en"  xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta charset="utf-8">
+        <title> e-TESDA:Learn</title>
+
+        <!-- The icon on the tab  
+        <link rel="shortcut icon" href="../assets/icons/learn_icon 100x100.ico">-->
+        
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        {{ theme:favicon }}
+
+        <!-- Le styles -->
+       
+        {{ theme:css file="bootstrap.css" }}
+      {{ theme:css file="jquery-ui-1.10.3.custom.css" }}
+       {{theme:css file="datepicker.css" }}
+        
+     
+      
+
+        <style type="text/css">
+            body {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+            .sidebar-nav {
+                padding: 9px 0;
+            }
+            
+        </style>
+        
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+        <!-- Fav and touch icons--> 
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="bootstrap/ico/apple-touch-icon-144-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="bootstrap/ico/apple-touch-icon-114-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="bootstrap/ico/apple-touch-icon-72-precomposed.png">
+        <link rel="apple-touch-icon-precomposed" href="bootstrap/ico/apple-touch-icon-57-precomposed.png">
+        <link rel="shortcut icon" href="bootstrap/ico/favicon.png">
+    </head>
+
+     
+    <div class="wrapper">
+    <body >
+       <div id="fb-root"></div>
+<script>
+  window.fbAsyncInit = function() {
+    // init the FB JS SDK
+    FB.init({
+      appId      : '647965535229711',                        // App ID from the app dashboard
+      channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel file for x-domain comms
+      status     : true,                                 // Check Facebook Login status
+      xfbml      : true                                  // Look for social plugins on the page
+    });
+
+    // Additional initialization code such as adding Event Listeners goes here
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/all.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+        
+
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container" style="width: 1180px">
+                   
+                    <a class="brand" href="{{ url:site }}"> {{ theme:image file="learn-logo.png" }}</a>
+                    <div class="nav-collapse collapse">
+
+                           {{ if example:logged_in }}
+                        <ul class="nav">
+                            <li>   <a  href="{{ url:site uri="learner/dash2" }}">Dashboard</a></li>
+                            <li > <a  href="{{ url:site uri="sectors" }}">Learn </a> </li>
+                             <li > <a  href="{{ url:site uri="profiling/viewProf"  }}" >e-Profiling </a> </li>
+                        </ul>
+
+                       
+                        
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                             <a  id="recentActivity" data-placement="bottom" data-trigger="click" data-toggle="popover" data-title="Recent activities"
+                                 data-content="
+                                
+                                 <ul class='popover-list'> 
+                                    {{ example:recAct }}
+                                    
+                                    </ul>
+                                   
+                                    ">
+                                    <small> Recent Activities</small> <span class="badge badge-success"> {{example:countRec }}</span>  
+                                    <b class="caret"></b></a>
+                            </li>
+                            <li class="dropdown">
+
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                   
+                                    <i class=" icon-user"></i> {{ example:display_name }}  <b class="caret"></b></a>
+                             
+                                
+                                    <ul class="dropdown-menu">
+                                    {{ if settings:enable_profiles }}
+                                  
+                                    <li><a href="{{ url:site uri="users/logout" }}">Logout</a></li>
+                                    
+                                    
+                                   
+                                    
+                                    {{ endif }}
+                                   
+                                    
+
+                                    {{ if user:has_cp_permissions }}
+                                    
+                        {{ endif }}
+                                </ul>
+                            </li>
+                        </ul>   
+                          
+          
+           
+           
+        {{ else }}
+       
+          <ul class="nav pull-right">
+              <li > <a  href="{{ url:site uri="learner/login" }}"  >Sign in</a> </li>
+                           
+                             <li > <a href="{{ url:site uri="learner/register" }}" >Create Account</a> </li>
+
+
+
+
+
+                        </ul>
+       
+         <!--
+          <ul class="nav pull-right">
+            <li><a href="{{ url:site }}users/login">{{ helper:lang line="user_login_header" }}</a></li>
+            <li><a href="{{ url:site }}register">{{ helper:lang line="user_register_title" }}</a></li>
+          </ul> -->
+        {{ endif }}
+                     
+        
+        
+                        
+                       
+                    </div><!--/.nav-collapse -->
+                </div>
+            </div>
+        
+        </div>
+        
+        
+            <!-- sign in Modal    -->   
+            
+              <div id="signinModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel"> Sign in to e-TESDA Learn </h3>
+            </div>
+            <div class="modal-body">
+                   <form >
+                        <h5 class="gray">Please Log in</h5>
+                        
+                        <input type="text"  placeholder="Email address"><br>
+                        <input type="password"  placeholder="Password">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me"> Remember me
+                            <a class="btn btn-link" style="font-size:8pt; margin-bottom:2px "> forget your Password?</a>
+                        </label>
+                         
+                        <a class="btn btn-primary" href="{{ url:site }}users/login">Sign in</a>
+                       
+                       
+                    </form>
+                   
+               
+            </div>
+
+        </div>
+            
+            
+            
+         
+            
+            
+      
+
+
+
+        <!-- Create Account Modal -->
+        <div id="createAccountModal" class="modal modal-thinner hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel"> Sign up to e-TESDA Learn </h3>
+            </div>
+            <div class="modal-body ">
+                <div class="row">
+                   
+                                                    
+                   
+                      
+                     <div class="span3">
+                         
+                                <form>
+                                     <div class="control-group ">
+                                        <label class="control-label"><strong>Name </strong></label>
+                                        <div class="controls">
+                                            <input id="id_firstname" type="text" name="firstname" maxlength="30" placeholder="First name">
+                                            <br>
+                                            <input id="id_middlename" type="text" name="Middle Name" maxlength="30"  placeholder="Middle name">
+                                            <br>
+                                            
+                                            <input id="id_lastname" type="text" name="lastname" maxlength="30" placeholder="Last name">
+                                        </div>
+                                    </div>
+
+                                  
+
+                                    <div class="control-group ">
+                                        <label class="control-label"><strong>E-mail </strong></label>
+                                        <div class="controls">
+                                            <input type="text" name="email" id="id_email" placeholder="e.g. sample@email.com">
+
+                                        </div>
+                                    </div>
+
+                                   
+
+                                  
+
+                                    <div class="control-group ">
+                                        <label class="control-label"><strong>Password </strong></label>
+                                        <div class="controls">
+                                            <input type="password" name="password1" id="id_password1" >
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group ">
+                                        <label class="control-label"><strong>Re-enter Password </strong></label>
+                                        <div class="controls">
+                                            <input type="password" name="password2" id="id_password2" >
+
+
+                                        </div>
+                                    </div>
+                                  <div class="control-group ">
+                                  
+                                      <a class="btn btn-link" style="font-size:8pt; margin-left:-10px"> Terms and Condition</a>
+                                    </div>
+
+                              <div class="control-group ">
+                                  
+                                  <a class="btn btn-success" >Sign up </a>
+                                    </div>
+                             </form>
+                                
+
+                   
+                   </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        
+        
+        
+        
+        
+        
+        

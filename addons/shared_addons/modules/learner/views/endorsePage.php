@@ -1,0 +1,1 @@
+<?php echo Asset::img('endorse_dummy.jpg', 'alt text',array('width'=>1280, 'height'=>720) );?> 

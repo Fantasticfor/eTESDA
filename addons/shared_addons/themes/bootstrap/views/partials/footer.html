@@ -1,0 +1,233 @@
+                                  
+   
+     <div id="footer">
+          <div class="container" >
+        
+<div class="footer">
+ 
+<div class="col1" >
+ 
+<h5> {{ theme:image file="footer-tesda.png" width="50px" }}&nbsp;&nbsp;&nbsp; {{ theme:image file="learn-logo.png"  }}</h5>
+
+&#169; 2012, e-TESDA
+ <br>
+ <a href=#>About Us</a> | <a href=#>Contact Us</a>
+ <br>
+ <a href="{{ url:site uri="learner/learnerFeedback"}}" >Give us a Feedback</a>
+<!--- The First Column of The Four Column Blog Footer --></div>
+
+
+ 
+<div class="col2">
+ 
+<h4 class="footer">Other Programs</h4>
+<br>
+<a href=#>{{ theme:image file="certify-logo.png"  }}</a>
+<br><br>
+<a href=#>{{ theme:image file="work-logo.png"  }}</a>
+<!--- The Second Column of The Four Column Blog Footer --></div>
+ 
+
+ 
+<div class="col3">
+ 
+<h4 class="footer">Connect with us</h4>
+ <br>
+ {{ theme:image file="footer-twitter.png"  }}
+ &nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com">Follow us on Twitter</a>
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ {{ theme:image file="footer-fb.png"  }}
+ &nbsp;&nbsp;&nbsp;<a href="http://twitter.com">Like us on Facebook</a>
+
+  <br><br>
+  {{ theme:image file="footer-site.png"  }}
+ &nbsp;&nbsp;&nbsp;<a href="http://www.tesda.gov.ph">Visit TESDA site</a>
+<!--- The Fourth Column of The Four Column Blog Footer --></div>
+</div>
+
+          </div>
+             
+                                    </div><!--/.fluid-container-->
+                                    
+                                    </div>
+
+                                    <!-- Le javascript
+                                    ================================================== -->
+                                    <!-- Placed at the end of the document so the pages load faster -->
+
+
+
+
+
+
+
+
+
+                                    
+                               
+    
+                                     {{ theme:js file="jquery.min.js" }}
+                            
+                                    {{ theme:js file="bootstrap.min.js" }}
+                               
+                                {{ theme:js file = "bootstrap-datepicker.js" }}
+                                  {{ theme:js file="dashboard.js" }}
+                                  {{ theme:js file="jquery.Shorten.js" }}
+                                    {{ theme:js file="jquery-ui-1.10.3.custom.min.js" }}
+                                  {{ theme:js file="jquery.timer.js" }}
+                                  {{ theme:js file="test_timer.js" }}
+                              
+                                  {{ theme:js file="bootstrap_tooltip.js" }} 
+                                    {{ theme:js file="bootstrap_popover.js" }}
+                                  
+                                   {{ theme:js file="bootstrap_scrollspy.js" }}
+                             
+                                   {{ theme:js file="bootstrap_affix.js" }}
+                                  {{ theme:js file="jquery.sticky.js" }}
+                                  {{ theme:js file="holder.js" }}
+                                 {{ theme:js file="landing.js" }}
+                                 
+                                 {{if example:logged_in}}
+                                 
+                                 {{if example:checkCompModal}}
+                                 {{else}}
+                                     {{ theme:js file="learn_modals.js"}}
+                                     {{endif}}
+                                     
+                                     
+                                  {{if example:checkBadgeModal }}
+                                  {{ theme:js file="badge_modal.js"}}
+                                  {{endif}}
+                                  
+                                  <script>
+                                        $(document).ready(function() {
+                                       
+                                                {{if example:enMaster}}
+                                              
+                                                $('#modalEnrollBadge').modal('show');
+                                          
+                                                {{endif}}
+                                                
+                                                {{if example:badgeSC}}
+                                                
+                                                    $('#modalSCBadge').modal('show');
+                                                    
+                                                    {{endif}}
+                                                    {{if example:badgeOA}}
+                                                        $('#modalOABadge').modal('show');
+                                                        {{endif}}
+                                        });
+                                      
+                                      
+                                  </script>
+                                 
+                                  {{endif}}
+                                 {{if example:logged_in}}
+                                 {{ theme:js file="topic.js" }}
+                              
+                                 {{endif}} 
+                                 
+                                 {{ theme:js file="dataModal.js" }} 
+                                  
+                                 
+                                 
+                             
+                                 
+	
+
+                   
+<script type="text/javascript">
+   
+    $(document).ready(function() {
+
+    $('#dp3').datepicker({
+        
+             dateFormat: 'yy-mm-dd'
+        
+    });
+      var availableTags = [
+			{{example:allTags }}
+		];
+		$( "#autocompleteLand" ).autocomplete({
+			source: availableTags,
+                        
+                        select: function( event, ui ) {
+                        var lName = ui.item.value;
+                        var learnN = encodeURIComponent(lName);
+                      
+                        //alert(learnN);
+//                        var str = $.trim(lName.split('@')[0]);
+//                        var learnN = encodeURIComponent(str);
+//                        var learnNN = $.trim(lName.split('@')[1]);
+//                        alert(learnN);
+                      //$('div #body_table').load(SITE_URL+'admin/statistics/learnerStat/autoLearner?fPart='+learnN+'&sPart='+learnNN);
+                       location.href="{{ url:site uri="syllabus/searchRes" }}"+'/'+learnN;
+                        },
+                        
+                          response: function(event, ui) {
+            // ui.content is the array that's about to be sent to the response callback.
+            if (ui.content.length === 0) {
+                $("#empty-message").text("No results found");
+            } else {
+                $("#empty-message").empty();
+            }
+        }
+		});
+     
+    });
+    
+    $(document).ready(function() {
+     
+      
+     
+    });
+
+    $(document).ready(function(){
+    $("#sticker").sticky({topSpacing:-30});
+    
+  });
+  
+   $(document).ready(function(){
+    $("#sticker2").sticky({topSpacing:62});
+    
+  });
+    
+    
+     $(function() { 
+        $('.example').popover('show');
+    });
+    
+   $(function() { 
+        $('#recentActivity').popover();
+    });
+
+
+  $(document).ready(function(){
+    $('.carousel').carousel();
+    interval:200;
+  });
+
+        
+
+ 
+</script>
+
+
+
+
+
+
+
+
+
+          
+
+ 
+
+
+
+
+                                    </body>
+                                    
+                                     
+                                    </html>
